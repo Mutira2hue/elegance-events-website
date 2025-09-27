@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegance Events Co. | Stress-Free Event Planning</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Using Inter font as requested */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7; /* Soft light background */
+        }
+        /* --- Custom Color Palette: Black, Emerald Green, and Gold --- */
+        .dark-bg {
+            background-color: #0A0A0A; /* Deep Black/Charcoal */
+        }
+        .accent-green-text {
+            color: #10b981; /* Tailwind Emerald Green for primary accent */
+        }
+        .accent-gold-text {
+            color: #fbbf24; /* Tailwind Amber/Gold for subtle highlights */
+        }
+        
+        /* Primary Call-to-Action Button (Green) */
+        .btn-primary-green {
+            @apply inline-block px-8 py-3 text-lg font-semibold transition duration-300 ease-in-out transform bg-[#10b981] text-white rounded-full shadow-lg hover:bg-[#059669] hover:scale-[1.02];
+        }
+        /* Secondary Button Style (Dark) */
+        .btn-secondary-dark {
+             @apply inline-block px-8 py-3 text-lg font-semibold transition duration-300 ease-in-out transform bg-gray-900 text-white rounded-full shadow-lg hover:bg-gray-700 hover:scale-[1.02];
+        }
+        /* Style for the submission message area */
+        .message-box {
+            @apply p-3 rounded-lg text-sm font-medium mb-4 transition-opacity duration-300;
+        }
+        .message-success {
+            @apply bg-green-100 text-green-800 border border-green-300;
+        }
+        .message-error {
+            @apply bg-red-100 text-red-800 border border-red-300;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <a href="#" class="text-2xl font-extrabold accent-green-text tracking-tight">Elegance Events Co.</a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-6 text-gray-600 font-medium">
+                <a href="#home" class="hover:accent-green-text">Home</a>
+                <a href="#services" class="hover:accent-green-text">Services</a>
+                <a href="#about" class="hover:accent-green-text">About Me</a>
+                <a href="#portfolio" class="hover:accent-green-text">Portfolio</a>
+                <a href="#contact" class="btn-primary-green py-2 px-4 text-base">Book a Consultation</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-800 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <nav class="flex flex-col p-4 space-y-2 font-medium text-gray-700">
+                <a href="#home" class="block py-2 px-3 rounded-lg hover:bg-gray-100">Home</a>
+                <a href="#services" class="block py-2 px-3 rounded-lg hover:bg-gray-100">Services</a>
+                <a href="#about" class="block py-2 px-3 rounded-lg hover:bg-gray-100">About Me</a>
+                <a href="#portfolio" class="block py-2 px-3 rounded-lg hover:bg-gray-100">Portfolio</a>
+                <a href="#contact" class="btn-primary-green mt-4 text-center">Book a Consultation</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- --- MAIN WEBSITE CONTENT VIEW --- -->
+    <div id="site-pages-view">
+        <main>
+            <!-- Hero Section -->
+            <section id="home" class="relative overflow-hidden pt-16 pb-20 md:py-32 dark-bg text-white">
+                <!-- Background image/overlay for impact -->
+                <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://placehold.co/1200x800/111111/dddddd?text=Elegant+Event+Setup')"></div>
+                
+                <div class="container mx-auto px-4 relative z-10 text-center">
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+                        <span class="accent-gold-text">Planning Made Seamless.</span> Memories Made Magnificent.
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 opacity-90 max-w-3xl mx-auto">
+                        A new perspective in event design. Specializing in personalized, stress-free planning for all occasions.
+                    </p>
+                    <a href="#contact" class="btn-primary-green">
+                        Plan Your Event Now
+                    </a>
+                </div>
+            </section>
+
+            <!-- Services Section (Broad Focus Maintained) -->
+            <section id="services" class="py-16 md:py-24 bg-white">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900">Our Broad Spectrum of Services</h2>
+                    <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">We handle all events, big or small, until we find our niche. Currently accepting bookings for any event type.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Service Card 1: Weddings -->
+                        <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                            <div class="text-3xl mb-4 accent-gold-text">💍</div>
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">Life Milestones (Weddings, Anniversaries)</h3>
+                            <p class="text-gray-600">Full planning and design for the most important days of your life. We execute your vision perfectly.</p>
+                        </div>
+
+                        <!-- Service Card 2: Corporate -->
+                        <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                            <div class="text-3xl mb-4 accent-gold-text">💼</div>
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">Business & Professional Events</h3>
+                            <p class="text-gray-600">Conferences, networking mixers, grand openings, and corporate holiday parties with impact.</p>
+                        </div>
+
+                        <!-- Service Card 3: Social & Private -->
+                        <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                            <div class="text-3xl mb-4 accent-gold-text">🎉</div>
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">Private & Social Celebrations</h3>
+                            <p class="text-gray-600">Themed parties, birthdays, showers, and intimate dinner gatherings. Everything tailored to you.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Choose Us Section (Now Dark/Green/Gold) -->
+            <section id="why-us" class="py-16 md:py-24 dark-bg text-white">
+                <div class="container mx-auto px-4 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Why Partner with Elegance Events?</h2>
+                    <p class="text-lg mb-12 max-w-3xl mx-auto opacity-90">Your peace of mind is our priority. We handle logistics with precision and flair.</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-left">
+                        <!-- Feature 1 -->
+                        <div class="p-6 bg-gray-900 rounded-lg shadow-xl">
+                            <h4 class="text-xl font-semibold mb-3 accent-green-text">Creative Flexibility</h4>
+                            <p class="text-gray-300">We love planning diverse events. Bring us your unique challenge—we thrive on originality.</p>
+                        </div>
+                        <!-- Feature 2 -->
+                        <div class="p-6 bg-gray-900 rounded-lg shadow-xl">
+                            <h4 class="text-xl font-semibold mb-3 accent-green-text">Dedicated Management</h4>
+                            <p class="text-gray-300">From the first vendor meeting to the final cleanup, you get one dedicated point of contact.</p>
+                        </div>
+                        <!-- Feature 3 -->
+                        <div class="p-6 bg-gray-900 rounded-lg shadow-xl">
+                            <h4 class="text-xl font-semibold mb-3 accent-green-text">Budget Clarity</h4>
+                            <p class="text-gray-300">Transparent financial planning means we maximize your resources without sacrificing quality or surprise fees.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Me Section -->
+            <section id="about" class="py-16 md:py-24 bg-white">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">Meet Your Planner, Jemima</h2>
+                    
+                    <div class="flex flex-col md:flex-row gap-10 items-center">
+                        <!-- Left Column: Image Placeholder -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <!-- Use a soft green/white color scheme for the placeholder to fit the brand -->
+                            <img src="https://placehold.co/400x400/10b981/ffffff?text=Professional+Photo" alt="Professional portrait of event planner Jemima" class="w-64 h-64 object-cover rounded-full shadow-2xl border-4 border-gray-100">
+                        </div>
+
+                        <!-- Right Column: Text -->
+                        <div class="w-full md:w-2/3 text-gray-700">
+                            <p class="text-lg mb-4 leading-relaxed">
+                                Hello! I'm Jemima, the founder of Elegance Events Co. Starting this business has been a journey fueled by a deep passion for logistics, design, and, most importantly, **seeing your vision come to life**. While this business is new, my dedication to meticulous planning and client satisfaction is not.
+                            </p>
+                            <p class="text-lg mb-4 leading-relaxed">
+                                I launched Elegance Events Co. because I believe every milestone, regardless of size, deserves a seamless and joyful celebration. I'm currently committed to planning all event types—from intimate family gatherings to large corporate launches—to build a versatile and dynamic portfolio. This flexibility ensures you get a planner who is energized by new challenges and dedicated to making your event unique.
+                            </p>
+                            <p class="text-lg leading-relaxed font-semibold">
+                                My promise to you is simple: **we handle the stress, you enjoy the magnificent moment.** Let's start planning something extraordinary.
+                            </p>
+                            <div class="mt-6">
+                                <a href="#contact" class="text-lg font-semibold accent-green-text hover:text-gray-900 transition duration-300">
+                                    Connect with Jemima &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Portfolio Snippet (Placeholder) -->
+            <section id="portfolio" class="py-16 md:py-24 bg-gray-50">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900">Our Recent Work</h2>
+                    <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">A glimpse into the beautiful events we've brought to life—from formal to fun.</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="rounded-xl overflow-hidden shadow-lg group">
+                            <img src="https://placehold.co/600x400/D0F0C0/333333?text=Luxury+Wedding" alt="Luxury Wedding Setup" class="w-full h-56 object-cover transition duration-500 group-hover:scale-105">
+                            <div class="p-4 bg-white">
+                                <h4 class="font-semibold text-gray-800">Coastal Romance Wedding</h4>
+                                <p class="text-sm text-gray-500">Venue Sourcing & Design</p>
+                            </div>
+                        </div>
+                        <div class="rounded-xl overflow-hidden shadow-lg group">
+                            <img src="https://placehold.co/600x400/C4B0D4/333333?text=Tech+Conference" alt="Corporate Conference Setup" class="w-full h-56 object-cover transition duration-500 group-hover:scale-105">
+                            <div class="p-4 bg-white">
+                                <h4 class="font-semibold text-gray-800">Annual Tech Summit</h4>
+                                <p class="text-sm text-gray-500">Logistics & Speaker Coordination</p>
+                            </div>
+                        </div>
+                        <div class="rounded-xl overflow-hidden shadow-lg group">
+                            <img src="https://placehold.co/600x400/F0D9D9/333333?text=Birthday+Party" alt="Elegant Birthday Party" class="w-full h-56 object-cover transition duration-500 group-hover:scale-105">
+                            <div class="p-4 bg-white">
+                                <h4 class="font-semibold text-gray-800">50th Birthday Gala</h4>
+                                <p class="text-sm text-gray-500">Themed Decor & Entertainment</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-10">
+                        <a href="#contact" class="text-gray-900 font-semibold hover:accent-green-text transition duration-300">
+                            Request our Full Portfolio &rarr;
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Contact/Quote Section -->
+            <section id="contact" class="py-16 md:py-24 bg-white">
+                <div class="container mx-auto px-4 max-w-3xl">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900">Ready to Start Planning?</h2>
+                    <p class="text-center text-gray-600 mb-10">Tell us about your event and we'll be in touch within 24 hours.</p>
+
+                    <form id="contact-form" class="space-y-6 p-6 border border-gray-200 rounded-xl shadow-lg bg-gray-50">
+                        <!-- Submission Message Area -->
+                        <div id="submission-message" class="message-box hidden"></div>
+
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                            <input type="text" id="name" name="name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-gray-900 focus:border-gray-900">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="email" name="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-gray-900 focus:border-gray-900">
+                        </div>
+                        <div>
+                            <label for="event-type" class="block text-sm font-medium text-gray-700 mb-1">Type of Event</label>
+                            <select id="event-type" name="event-type" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-gray-900 focus:border-gray-900">
+                                <option value="">Select an option</option>
+                                <option value="wedding">Life Milestone (Wedding, Anniversary, etc.)</option>
+                                <option value="corporate">Corporate Event (Conference, Mixer, etc.)</option>
+                                <option value="private">Private Party / Social Celebration</option>
+                                <option value="other">Other (Any Event Type)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="details" class="block text-sm font-medium text-gray-700 mb-1">Tell us more about your vision</label>
+                            <textarea id="details" name="details" rows="4" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-gray-900 focus:border-gray-900"></textarea>
+                        </div>
+                        <button type="submit" id="submit-btn" class="w-full btn-primary-green">
+                            Send My Inquiry
+                        </button>
+                        <!-- Loading Indicator -->
+                        <div id="loading-indicator" class="hidden text-center text-gray-500 font-medium">
+                            Processing inquiry...
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- --- INQUIRIES DASHBOARD VIEW (Hidden by default) --- -->
+    <section id="admin-dashboard-view" class="hidden min-h-screen py-16 md:py-24 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <header class="mb-10 flex justify-between items-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Client Inquiries Dashboard</h2>
+                <button id="view-website-btn" class="btn-secondary-dark py-2 px-4 text-base">
+                    &larr; View Website
+                </button>
+            </header>
+
+            <div class="bg-white p-6 rounded-xl shadow-2xl">
+                <!-- Status Message Area -->
+                <div id="dashboard-message" class="message-box bg-blue-100 text-blue-800 border-blue-300">
+                    Loading leads... If you don't see anything, make sure you've submitted at least one inquiry!
+                </div>
+                
+                <!-- Inquiry Table Container -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client Name</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email / Type</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inquiries-list" class="bg-white divide-y divide-gray-200">
+                            <!-- Inquiries will be inserted here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                <p id="no-inquiries-msg" class="text-center text-gray-500 p-8 hidden">No client inquiries found yet. Try submitting the contact form on the home page!</p>
+            </div>
+            
+            <p class="text-center text-sm text-gray-600 mt-6">
+                Your private User ID: <span id="display-user-id" class="font-mono text-xs p-1 bg-gray-200 rounded">Initializing...</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer (Dark/Green/Gold Theme) -->
+    <footer class="dark-bg py-10 text-white">
+        <div class="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <!-- Brand -->
+            <div>
+                <h3 class="text-xl font-bold mb-3 accent-gold-text">Elegance Events Co.</h3>
+                <p class="text-sm text-gray-300">Crafting memories, one event at a time.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="font-semibold mb-3">Quick Links</h4>
+                <ul class="space-y-1 text-sm text-gray-300">
+                    <li><a href="#services" class="hover:accent-green-text">Services</a></li>
+                    <li><a href="#about" class="hover:accent-green-text">About Me</a></li>
+                    <li><a href="#portfolio" class="hover:accent-green-text">Portfolio</a></li>
+                    <li><a href="#contact" class="hover:accent-green-text">Get a Quote</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h4 class="font-semibold mb-3">Get In Touch</h4>
+                <p class="text-sm text-gray-300">Email: <a href="mailto:mutirajemima@gmail.com" class="hover:accent-green-text">mutirajemima@gmail.com</a></p>
+                <p class="text-sm text-gray-300">Phone: +254716434111</p>
+            </div>
+            
+            <!-- Social Media -->
+            <div>
+                <h4 class="font-semibold mb-3">Connect</h4>
+                <div class="flex space-x-3 text-lg">
+                    <!-- Instagram Placeholder -->
+                    <a href="https://www.instagram.com/eleganceeventsco_ig" target="_blank" class="hover:accent-green-text transition duration-300">
+                        <span class="accent-gold-text">📸</span> Instagram
+                    </a>
+                </div>
+                <p class="text-xs text-gray-500 mt-2">Link added for future use!</p>
+            </div>
+        </div>
+
+        <!-- Copyright & Admin Link -->
+        <div class="text-center mt-8 pt-4 border-t border-gray-700 text-sm text-gray-500">
+            &copy; 2024 Elegance Events Co. All rights reserved.
+            <span class="md:inline-block hidden mx-2">|</span>
+            <a href="#" id="view-inquiries-link" class="text-gray-400 hover:accent-green-text mt-2 md:mt-0 block md:inline">Inquiries Dashboard</a>
+        </div>
+    </footer>
+
+    <script type="module">
+        // --- Firebase Imports ---
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Enable debug logging for Firebase
+        setLogLevel('Debug');
+
+        // --- Global Variables for Firebase Setup ---
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let db = null;
+        let auth = null;
+        let userId = null;
+        let isAuthReady = false;
+
+        // --- DOM Elements ---
+        const sitePagesView = document.getElementById('site-pages-view');
+        const adminDashboardView = document.getElementById('admin-dashboard-view');
+        const viewInquiriesLink = document.getElementById('view-inquiries-link');
+        const viewWebsiteBtn = document.getElementById('view-website-btn');
+        const inquiriesList = document.getElementById('inquiries-list');
+        const dashboardMessage = document.getElementById('dashboard-message');
+        const noInquiriesMsg = document.getElementById('no-inquiries-msg');
+        const displayUserId = document.getElementById('display-user-id');
+        
+        // Contact Form Elements (for submission)
+        const contactForm = document.getElementById('contact-form');
+        const submissionMessage = document.getElementById('submission-message');
+        const submitBtn = document.getElementById('submit-btn');
+        const loadingIndicator = document.getElementById('loading-indicator');
+
+
+        // --- Firebase Initialization and Authentication ---
+        async function initializeFirebase() {
+            try {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                userId = auth.currentUser?.uid || crypto.randomUUID();
+                displayUserId.textContent = userId;
+                isAuthReady = true;
+                
+                // Once authenticated, setup the real-time listener for the dashboard
+                setupInquiriesListener();
+
+                console.log("Firebase initialized successfully. User ID:", userId);
+            } catch (error) {
+                console.error("Error initializing Firebase or signing in:", error);
+                displayMessage("Failed to initialize system. Please try again later.", false);
+            }
+        }
+
+        // --- Utility Function for Displaying Messages (Form) ---
+        function displayMessage(message, isSuccess) {
+            submissionMessage.textContent = message;
+            submissionMessage.classList.remove('hidden', 'message-success', 'message-error');
+            if (isSuccess) {
+                submissionMessage.classList.add('message-success');
+            } else {
+                submissionMessage.classList.add('message-error');
+            }
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                submissionMessage.classList.add('hidden');
+            }, 5000);
+        }
+
+        // --- Form Submission Handler ---
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            if (!db || !userId) {
+                displayMessage("System not ready. Please wait a moment or refresh.", false);
+                return;
+            }
+
+            // Disable button and show loading indicator
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            loadingIndicator.classList.remove('hidden');
+            submissionMessage.classList.add('hidden'); // Hide previous message
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                eventType: document.getElementById('event-type').value,
+                details: document.getElementById('details').value,
+                timestamp: new Date(),
+            };
+
+            try {
+                // Securely store the inquiry in the planner's private collection
+                const collectionPath = `artifacts/${appId}/users/${userId}/inquiries`;
+                await addDoc(collection(db, collectionPath), formData);
+
+                displayMessage("Thank you! Your inquiry has been successfully sent. Jemima will be in touch shortly.", true);
+                contactForm.reset(); // Clear the form on success
+
+            } catch (error) {
+                console.error("Error saving inquiry to Firestore:", error);
+                displayMessage("Submission failed. Please check your connection or try again.", false);
+            } finally {
+                // Re-enable button and hide loading indicator
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                loadingIndicator.classList.add('hidden');
+            }
+        }
+        
+        // --- Dashboard Logic: Real-time Listener ---
+        function setupInquiriesListener() {
+            if (!db || !userId) return;
+
+            const collectionPath = `artifacts/${appId}/users/${userId}/inquiries`;
+            const inquiriesColRef = collection(db, collectionPath);
+
+            // Listen for real-time updates
+            onSnapshot(inquiriesColRef, (snapshot) => {
+                const inquiries = [];
+                snapshot.forEach(doc => {
+                    inquiries.push({ id: doc.id, ...doc.data() });
+                });
+
+                // Sort client-side by timestamp in descending order (newest first)
+                inquiries.sort((a, b) => (b.timestamp?.toDate() || 0) - (a.timestamp?.toDate() || 0));
+
+                renderInquiries(inquiries);
+            }, (error) => {
+                console.error("Error fetching inquiries:", error);
+                dashboardMessage.textContent = "Error loading inquiries. Please check the console for details.";
+                dashboardMessage.classList.remove('bg-blue-100', 'text-blue-800');
+                dashboardMessage.classList.add('bg-red-100', 'text-red-800');
+            });
+        }
+        
+        // --- Dashboard Logic: Render Function ---
+        function renderInquiries(inquiries) {
+            inquiriesList.innerHTML = '';
+            
+            if (inquiries.length === 0) {
+                noInquiriesMsg.classList.remove('hidden');
+                dashboardMessage.classList.add('hidden');
+                return;
+            }
+
+            noInquiriesMsg.classList.add('hidden');
+            dashboardMessage.classList.add('hidden'); // Hide loading message
+
+            inquiries.forEach(inquiry => {
+                const time = inquiry.timestamp ? new Date(inquiry.timestamp.seconds * 1000).toLocaleString() : 'N/A';
+
+                const row = `
+                    <tr class="hover:bg-gray-50 transition duration-150">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${time}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">${inquiry.name}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-gray-900">${inquiry.email}</div>
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">${inquiry.eventType.toUpperCase()}</span>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-600 max-w-xs overflow-hidden truncate" title="${inquiry.details}">${inquiry.details}</td>
+                    </tr>
+                `;
+                inquiriesList.insertAdjacentHTML('beforeend', row);
+            });
+        }
+        
+        // --- View Toggling ---
+        function showDashboard() {
+            sitePagesView.classList.add('hidden');
+            adminDashboardView.classList.remove('hidden');
+            window.scrollTo(0, 0); // Scroll to top of dashboard
+        }
+
+        function showWebsite() {
+            adminDashboardView.classList.add('hidden');
+            sitePagesView.classList.remove('hidden');
+            window.scrollTo(0, 0); // Scroll to top of website
+        }
+
+
+        // --- Event Listeners and Initial Load ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle Logic
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+            
+            // Attach form submission listener
+            contactForm.addEventListener('submit', handleFormSubmit);
+
+            // Attach Dashboard view toggles
+            viewInquiriesLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                if(isAuthReady) {
+                    showDashboard();
+                } else {
+                    // Using a custom message box instead of alert()
+                    const message = "System is still initializing. Please wait a moment.";
+                    const tempMsg = document.createElement('div');
+                    tempMsg.className = 'fixed top-4 right-4 message-box message-error z-50';
+                    tempMsg.textContent = message;
+                    document.body.appendChild(tempMsg);
+                    setTimeout(() => tempMsg.remove(), 3000);
+                }
+            });
+
+            viewWebsiteBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showWebsite();
+            });
+
+            // Initialize Firebase
+            initializeFirebase();
+        });
+    </script>
+</body>
+</html>
+
