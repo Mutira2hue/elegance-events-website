@@ -373,6 +373,7 @@
 
         // --- Global Variables for Firebase Setup ---
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        // Note: The __firebase_config is expected to be a valid JSON string.
         const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
@@ -401,13 +402,20 @@
         // --- Firebase Initialization and Authentication ---
         async function initializeFirebase() {
             try {
+                // Check if firebaseConfig is not empty, indicating configuration is available
+                if (Object.keys(firebaseConfig).length === 0) {
+                    throw new Error("Firebase configuration is missing. Cannot initialize database.");
+                }
+
                 const app = initializeApp(firebaseConfig);
                 db = getFirestore(app);
                 auth = getAuth(app);
 
+                // Check for custom auth token first
                 if (initialAuthToken) {
                     await signInWithCustomToken(auth, initialAuthToken);
                 } else {
+                    // Fallback to anonymous sign-in if no custom token is available
                     await signInAnonymously(auth);
                 }
 
@@ -418,10 +426,21 @@
                 // Once authenticated, setup the real-time listener for the dashboard
                 setupInquiriesListener();
 
-                console.log("Firebase initialized successfully. User ID:", userId);
+                console.log("SUCCESS: Firebase initialized. User ID:", userId);
+                dashboardMessage.textContent = "Database connected. Leads are loading in real-time.";
+                dashboardMessage.classList.remove('bg-blue-100', 'text-blue-800');
+                dashboardMessage.classList.add('bg-green-100', 'text-green-800');
+
             } catch (error) {
-                console.error("Error initializing Firebase or signing in:", error);
-                displayMessage("Failed to initialize system. Please try again later.", false);
+                console.error("CRITICAL ERROR: Failed to initialize Firebase:", error.message);
+                displayUserId.textContent = "Error: See Console";
+                // Update the dashboard message to reflect the failure
+                dashboardMessage.textContent = `CRITICAL ERROR: Could not connect to the database. Check console for details. Data submission will NOT work.`;
+                dashboardMessage.classList.remove('bg-blue-100', 'text-blue-800');
+                dashboardMessage.classList.add('bg-red-100', 'text-red-800');
+
+                // Update the contact form message to reflect the failure
+                displayMessage("Cannot send inquiry. Database connection failed. Please contact the site owner directly.", false);
             }
         }
 
@@ -430,22 +449,26 @@
             submissionMessage.textContent = message;
             submissionMessage.classList.remove('hidden', 'message-success', 'message-error');
             if (isSuccess) {
+                submissionMessage.classList.remove('message-error');
                 submissionMessage.classList.add('message-success');
             } else {
+                submissionMessage.classList.remove('message-success');
                 submissionMessage.classList.add('message-error');
             }
-            // Hide message after 5 seconds
+            // Hide message after 8 seconds (longer for error visibility)
             setTimeout(() => {
                 submissionMessage.classList.add('hidden');
-            }, 5000);
+            }, 8000);
         }
 
         // --- Form Submission Handler ---
         async function handleFormSubmit(event) {
             event.preventDefault();
             
-            if (!db || !userId) {
-                displayMessage("System not ready. Please wait a moment or refresh.", false);
+            // Check for initialization status before attempting DB connection
+            if (!isAuthReady || !db || !userId) {
+                console.error("Submission failed: Firebase not fully initialized or encountered an error.");
+                displayMessage("Inquiry failed. System not ready. Please refresh the page.", false);
                 return;
             }
 
@@ -473,7 +496,7 @@
 
             } catch (error) {
                 console.error("Error saving inquiry to Firestore:", error);
-                displayMessage("Submission failed. Please check your connection or try again.", false);
+                displayMessage(`Submission failed: ${error.message}. Check console for details.`, false);
             } finally {
                 // Re-enable button and hide loading indicator
                 submitBtn.disabled = false;
@@ -484,7 +507,11 @@
         
         // --- Dashboard Logic: Real-time Listener ---
         function setupInquiriesListener() {
-            if (!db || !userId) return;
+            if (!db || !userId) {
+                 // The error should have been caught in initializeFirebase, but this is a safeguard
+                 console.warn("Inquiries listener attempted to start before DB/User ID was ready.");
+                 return;
+            }
 
             const collectionPath = `artifacts/${appId}/users/${userId}/inquiries`;
             const inquiriesColRef = collection(db, collectionPath);
@@ -501,9 +528,9 @@
 
                 renderInquiries(inquiries);
             }, (error) => {
-                console.error("Error fetching inquiries:", error);
-                dashboardMessage.textContent = "Error loading inquiries. Please check the console for details.";
-                dashboardMessage.classList.remove('bg-blue-100', 'text-blue-800');
+                console.error("Error fetching inquiries (onSnapshot):", error);
+                dashboardMessage.textContent = "Error loading inquiries from database. Please check the console.";
+                dashboardMessage.classList.remove('bg-green-100', 'text-green-800');
                 dashboardMessage.classList.add('bg-red-100', 'text-red-800');
             });
         }
@@ -519,7 +546,7 @@
             }
 
             noInquiriesMsg.classList.add('hidden');
-            dashboardMessage.classList.add('hidden'); // Hide loading message
+            dashboardMessage.classList.add('hidden'); // Hide loading/status message
 
             inquiries.forEach(inquiry => {
                 const time = inquiry.timestamp ? new Date(inquiry.timestamp.seconds * 1000).toLocaleString() : 'N/A';
